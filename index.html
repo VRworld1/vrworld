@@ -1,65 +1,235 @@
-from stellar_sdk import Server, Keypair, Asset, TransactionBuilder, Network
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VR World - عالم الواقع الافتراضي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* الأنماط الأساسية */
+        body {
+            margin: 0;
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: #eee; /* لون نص فاتح للتباين مع الخلفية الداكنة */
+            background-color: #1a1a2e; /* خلفية داكنة */
+            direction: rtl; /* لغة عربية من اليمين لليسار */
+            text-align: right; /* محاذاة النص لليمين */
+            overflow-x: hidden; /* لمنع شريط التمرير الأفقي */
+        }
 
-# 1. إعداد الاتصال بخادم Pi Network (مثال للـ Testnet)
-# للـ Mainnet ستحتاج لرابط خادم Pi الرسمي للشبكة الرئيسية
-horizon_url = "https://api.testnet.minepi.com"
-server = Server(horizon_url)
+        /* رأس الصفحة (Hero Section) */
+        .hero-section {
+            position: relative;
+            height: 100vh; /* ارتفاع الشاشة بالكامل */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden; /* لإخفاء أي جزء زائد من الصورة */
+        }
 
-# 2. مفاتيح الحسابات (يجب أن يكون بها رصيد Pi لتغطية الرسوم)
-# حساب المُصدر (الذي ينشئ العملة)
-issuer_secret = "S_ISSUER_SECRET_KEY" 
-issuer_kp = Keypair.from_secret(issuer_secret)
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://via.placeholder.com/1920x1080/0d0d1a/ffffff?text=VR+World+Background'); /* صورة خلفية جذابة */
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.4) blur(2px); /* تعتيم وتغبيش بسيط للخلفية */
+            z-index: 1;
+        }
 
-# حساب الموزع (الذي سيستقبل العملة ليعرضها في DEX)
-distributor_secret = "S_DISTRIBUTOR_SECRET_KEY"
-distributor_kp = Keypair.from_secret(distributor_secret)
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+            max-width: 900px;
+            background: rgba(0, 0, 0, 0.4); /* خلفية شبه شفافة للمحتوى */
+            border-radius: 10px;
+        }
 
-# 3. تعريف التوكن الجديد (Asset)
-asset_code = "MYPI"  # اسم التوكن الخاص بك (1-12 حرف)
-my_asset = Asset(asset_code, issuer_kp.public_key)
+        .hero-content h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            color: #00bcd4; /* لون أزرق سماوي مميز */
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
 
-def create_token():
-    print(f"جاري إنشاء التوكن {asset_code}...")
+        .hero-content p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            color: #e0f2f7;
+        }
 
-    # أولاً: الموزع يفتح "خط ثقة" ليستقبل التوكن
-    distributor_account = server.load_account(distributor_kp.public_key)
-    
-    trust_tx = (
-        TransactionBuilder(
-            source_account=distributor_account,
-            network_passphrase="Pi Network Testnet", # أو اسم شبكة Pi الخاصة
-            base_fee=10000 # رسوم المعاملة
-        )
-        .add_operation(Asset.change_trust(asset=my_asset))
-        .set_timeout(30)
-        .build()
-    )
-    trust_tx.sign(distributor_kp)
-    server.submit_transaction(trust_tx)
-    print("تم إنشاء خط الثقة بنجاح.")
+        .cta-button {
+            display: inline-block;
+            background-color: #00bcd4;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
+        }
 
-    # ثانياً: المُصدر يرسل التوكن للموزع (عملية السك/Minting)
-    issuer_account = server.load_account(issuer_kp.public_key)
-    
-    mint_tx = (
-        TransactionBuilder(
-            source_account=issuer_account,
-            network_passphrase="Pi Network Testnet",
-            base_fee=10000
-        )
-        .add_operation(
-            Asset.payment(
-                destination=distributor_kp.public_key,
-                asset=my_asset,
-                amount="1000000"  # الكمية التي تريد إنشاءها
-            )
-        )
-        .set_timeout(30)
-        .build()
-    )
-    mint_tx.sign(issuer_kp)
-    server.submit_transaction(mint_tx)
-    print(f"تم سك {asset_code} وإرسالها للموزع بنجاح!")
+        .cta-button:hover {
+            background-color: #0097a7;
+            transform: translateY(-3px);
+        }
 
-if __name__ == "__main__":
-    create_token()
+        /* قسم حول المشروع */
+        .about-section {
+            padding: 80px 40px;
+            background-color: #2a2a4a; /* لون أغمق قليلاً من الخلفية الأساسية */
+            text-align: center;
+        }
+
+        .about-section h2 {
+            font-size: 2.5em;
+            color: #00bcd4;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-section h2::after {
+            content: '';
+            position: absolute;
+            width: 70%;
+            height: 4px;
+            background-color: #00bcd4;
+            bottom: -10px;
+            right: 15%; /* لتوسيط الخط تحت العنوان في RTL */
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-card {
+            background-color: #3a3a5a;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            flex: 1;
+            min-width: 300px;
+            max-width: 450px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: right;
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .about-card h3 {
+            color: #00bcd4;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .about-card h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: #00bcd4;
+            bottom: 0;
+            right: 0;
+            border-radius: 2px;
+        }
+
+        .about-card p {
+            font-size: 1.1em;
+            color: #c0c0d0;
+        }
+
+        /* تذييل الصفحة */
+        footer {
+            background-color: #1a1a2e;
+            color: #888;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9em;
+            border-top: 1px solid #333;
+        }
+
+        /* استجابة للتصميم (Responsive Design) */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5em;
+            }
+
+            .hero-content p {
+                font-size: 1em;
+            }
+
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+
+            .about-section {
+                padding: 50px 20px;
+            }
+
+            .about-section h2 {
+                font-size: 2em;
+            }
+
+            .about-card {
+                min-width: unset;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>مرحباً بك في VR World</h1>
+            <p>اكتشف آفاقاً جديدة وتجارب لا تُنسى في عالم الواقع الافتراضي الغامر. نحن هنا لنقلك إلى عوالم لم تتخيلها من قبل.</p>
+            <a href="#about" class="cta-button">اكتشف مشروعنا</a>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <h2>حول مشروع VR World</h2>
+        <div class="about-content">
+            <div class="about-card">
+                <h3>رؤيتنا</h3>
+                <p>نسعى في VR World لتقديم تجربة واقع افتراضي لا مثيل لها، تجمع بين التكنولوجيا المتطورة والمحتوى الإبداعي لفتح أبواب عوالم جديدة كلياً للمستخدمين.</p>
+            </div>
+            <div class="about-card">
+                <h3>ماذا نقدم؟</h3>
+                <p>من الألعاب المثيرة والتدريبات التفاعلية إلى الجولات الافتراضية الثقافية والتجارب التعليمية الغامرة، نقدم مجموعة واسعة من تطبيقات الواقع الافتراضي لتناسب جميع الاهتمامات.</p>
+            </div>
+            <div class="about-card">
+                <h3>لماذا VR World؟</h3>
+                <p>نحن نؤمن بقوة الواقع الافتراضي في تغيير طريقة تفاعلنا مع العالم. مع VR World، ستحصل على تجربة غامرة، آمنة، ومبتكرة تمكنك من الاستكشاف والتعلم والاستمتاع بطرق جديدة.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 VR World. جميع الحقوق محفوظة.</p>
+    </footer>
+
+</body>
+</html>
