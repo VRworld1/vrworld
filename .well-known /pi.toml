@@ -1,9 +1,7 @@
-[CURRENCIES]]
-code = "REPUTA"
-issuer = "GB6SAOT4KIWL3Z5MPOI5CNOCUKIMZZ5ZZF3YNN7ZO2VDZH5VPQWYCJCI"
-name = "REPUTATION SCORE"
+[[CURRENCIES]]
+code = "VRWORLD"
+issuer = "GCHMI24KOT53YQFUWTOJBUDSOHLFPTYBKHH2FU2V5XEH5NBPXXKY66SD"
+name = "VR WORLD PROJET"
 desc = "REPUTA is a digital reputation scoring token on Pi Testnet."
-image = "https://mediceberg.github.io/RP/logo.png"
-status = "active"
-website = "https://rp-livid.vercel.app/"
-
+image = "https://vrworld1.github.io/vrworld/smart.png"
+website = "https://vrworld1.github.io/vrworld/"
