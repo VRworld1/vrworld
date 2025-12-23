@@ -1,1 +1,9 @@
+[CURRENCIES]]
+code = "REPUTA"
+issuer = "GB6SAOT4KIWL3Z5MPOI5CNOCUKIMZZ5ZZF3YNN7ZO2VDZH5VPQWYCJCI"
+name = "REPUTATION SCORE"
+desc = "REPUTA is a digital reputation scoring token on Pi Testnet."
+image = "https://mediceberg.github.io/RP/logo.png"
+status = "active"
+website = "https://rp-livid.vercel.app/"
 
