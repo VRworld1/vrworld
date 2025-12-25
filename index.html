@@ -80,6 +80,7 @@
         .logo-area img { 
             height: 45px; 
             filter: drop-shadow(0 0 12px var(--neon-cyan));
+            object-fit: contain;
         }
 
         .logo-area span {
@@ -560,12 +561,12 @@
 
     <header>
         <div class="logo-area">
-            <img src="VRLOGO.png" alt="VR World Logo">
-            <span>VR WORLD</span>
+            <img src="https://vrworld1.github.io/VRLOGO.png" alt="VR World Logo">
+            <span id="logo-text">VR WORLD</span>
         </div>
         <div class="nav-actions">
             <button class="wallet-btn">
-                <i class="fas fa-wallet"></i> <span>Pi Wallet</span>
+                <i class="fas fa-wallet"></i> <span id="wallet-text">Pi Wallet</span>
             </button>
             <button class="lang-btn" onclick="toggleLanguage()">العربية</button>
         </div>
