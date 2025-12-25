@@ -142,9 +142,8 @@
             align-items: center;
             justify-content: center;
             background: 
-                radial-gradient(ellipse at center, rgba(109, 27, 123, 0.4) 0%, transparent 70%),
-                linear-gradient(180deg, rgba(2,2,5,0.3) 0%, rgba(2,2,5,0.9) 100%),
-                url('https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?auto=format&fit=crop&w=1920&q=80');
+                linear-gradient(180deg, rgba(2,2,5,0.5) 0%, rgba(2,2,5,0.8) 100%),
+                url('https://i.postimg.cc/C1DqYKSY/VR-WORLD-BG.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -218,29 +217,37 @@
             color: var(--neon-cyan); 
             margin-bottom: 20px;
             text-shadow: 
-                0 0 40px var(--neon-cyan),
-                0 0 80px rgba(0, 243, 255, 0.5),
-                0 5px 20px rgba(0, 0, 0, 0.9);
+                0 0 50px var(--neon-cyan),
+                0 0 100px rgba(0, 243, 255, 0.6),
+                0 5px 25px rgba(0, 0, 0, 1),
+                2px 2px 4px rgba(0, 0, 0, 0.9);
             font-weight: 900;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             line-height: 1.2;
+            text-transform: uppercase;
         }
 
         .hero-subtitle {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--pi-gold);
             margin-bottom: 30px;
             font-family: 'Cairo', sans-serif;
-            text-shadow: 0 0 25px rgba(255, 165, 0, 0.6);
-            font-weight: 600;
+            text-shadow: 
+                0 0 30px rgba(255, 165, 0, 0.8),
+                2px 2px 6px rgba(0, 0, 0, 0.9);
+            font-weight: 700;
         }
 
         .hero p { 
             font-size: 1.15rem; 
-            color: #e8e8e8; 
+            color: #ffffff; 
             margin-bottom: 40px; 
-            line-height: 1.9;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+            line-height: 2;
+            text-shadow: 
+                0 0 10px rgba(0, 243, 255, 0.3),
+                2px 2px 8px rgba(0, 0, 0, 0.9),
+                0 0 20px rgba(0, 0, 0, 0.7);
+            font-weight: 400;
         }
 
         .explore-btn {
@@ -375,17 +382,123 @@
             color: var(--neon-cyan); 
             margin-bottom: 25px;
             font-size: 1.7rem;
-            text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+            text-shadow: 
+                0 0 25px rgba(0, 243, 255, 0.6),
+                2px 2px 4px rgba(0, 0, 0, 0.8);
             font-weight: 700;
+            letter-spacing: 1px;
         }
 
         .card p {
-            color: #c0c0c0;
-            line-height: 1.8;
+            color: #e0e0e0;
+            line-height: 1.9;
             font-size: 1.05rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+            font-weight: 400;
         }
 
-        /* Footer */
+        /* Pi Network Integration Badge */
+        .pi-badge {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--pi-purple), var(--pi-gold));
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 0 30px rgba(109, 27, 123, 0.8);
+            z-index: 999;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--pi-gold);
+        }
+
+        .pi-badge:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 0 50px rgba(255, 165, 0, 1);
+        }
+
+        .pi-badge i {
+            font-size: 1.8rem;
+            color: white;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .pi-badge span {
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Pi Network Features Section */
+        .pi-features {
+            padding: 80px 5%;
+            background: linear-gradient(180deg, #0a0a0f 0%, var(--dark-bg) 100%);
+            position: relative;
+            z-index: 1;
+        }
+
+        .pi-features-title {
+            text-align: center;
+            font-size: 3rem;
+            color: var(--pi-gold);
+            font-weight: 900;
+            margin-bottom: 60px;
+            text-shadow: 0 0 40px rgba(255, 165, 0, 0.6);
+            letter-spacing: 3px;
+        }
+
+        .pi-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pi-feature-item {
+            background: rgba(109, 27, 123, 0.1);
+            border: 2px solid rgba(255, 165, 0, 0.3);
+            padding: 35px 25px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .pi-feature-item:hover {
+            border-color: var(--pi-gold);
+            transform: translateY(-10px);
+            box-shadow: 0 0 40px rgba(255, 165, 0, 0.4);
+            background: rgba(109, 27, 123, 0.2);
+        }
+
+        .pi-feature-icon {
+            font-size: 3rem;
+            color: var(--pi-gold);
+            margin-bottom: 20px;
+            text-shadow: 0 0 25px rgba(255, 165, 0, 0.6);
+        }
+
+        .pi-feature-item h4 {
+            color: var(--neon-cyan);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .pi-feature-item p {
+            color: #d0d0d0;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
         footer {
             background: rgba(0, 0, 0, 0.95);
             padding: 50px 5%;
@@ -472,19 +585,52 @@
         <div class="card">
             <div class="card-icon"><i class="fas fa-eye"></i></div>
             <h3 id="c1-t">OUR VISION</h3>
-            <p id="c1-d">At VR World, we strive to provide unparalleled virtual reality experiences, combining cutting-edge technology and connectivity with immersive environments open to everyone around the world. Our goal is to create entirely new worlds for users to explore, learn, and thrive.</p>
+            <p id="c1-d">At VR World, we strive to revolutionize virtual reality experiences by merging cutting-edge immersive technology with blockchain innovation. Our mission is to create boundless digital worlds where users can explore, connect, and thrive in ways never before imagined.</p>
         </div>
         <div class="card">
             <div class="card-icon"><i class="fas fa-gamepad"></i></div>
             <h3 id="c2-t">WHAT WE OFFER?</h3>
-            <p id="c2-d">From exciting games and interactive training to exclusive tours and cultural virtual experiences, we offer a wide range of VR experiences to suit all interests. Explore virtual museums, attend live concerts, or join educational workshops - all from the comfort of your home.</p>
+            <p id="c2-d">Experience next-generation VR entertainment including immersive gaming worlds, interactive training simulations, virtual concerts, cultural exhibitions, and educational workshops. All powered by secure Pi Network transactions for seamless digital asset ownership.</p>
         </div>
         <div class="card">
             <div class="card-icon"><i class="fas fa-coins"></i></div>
             <h3 id="c3-t">WHY VR WORLD?</h3>
-            <p id="c3-d">We believe in the power of virtual reality to change the way we interact with the world and with each other. In VR World, you can visit exotic, immersive, safe, and innovative environments that allow you to explore, learn, and enjoy in new ways. Powered by Pi Network for secure, decentralized transactions.</p>
+            <p id="c3-d">We leverage Pi Network's revolutionary blockchain technology to enable secure, decentralized transactions within our metaverse. Create, trade, and own virtual assets with confidence in a transparent ecosystem designed for the future of digital interaction.</p>
         </div>
     </section>
+
+    <!-- Pi Network Integration Section -->
+    <section class="pi-features">
+        <h2 class="pi-features-title" id="pi-title">POWERED BY PI NETWORK</h2>
+        <div class="pi-features-grid">
+            <div class="pi-feature-item">
+                <div class="pi-feature-icon"><i class="fas fa-shield-alt"></i></div>
+                <h4 id="pi-f1-t">Secure Transactions</h4>
+                <p id="pi-f1-d">All in-world purchases and asset transfers are protected by Pi Network's advanced blockchain security protocols.</p>
+            </div>
+            <div class="pi-feature-item">
+                <div class="pi-feature-icon"><i class="fas fa-network-wired"></i></div>
+                <h4 id="pi-f2-t">Decentralized Economy</h4>
+                <p id="pi-f2-d">True ownership of digital assets with transparent, peer-to-peer transactions on the Pi blockchain.</p>
+            </div>
+            <div class="pi-feature-item">
+                <div class="pi-feature-icon"><i class="fas fa-rocket"></i></div>
+                <h4 id="pi-f3-t">Fast & Scalable</h4>
+                <p id="pi-f3-d">Experience instant transactions and seamless gameplay thanks to Pi Network's efficient consensus mechanism.</p>
+            </div>
+            <div class="pi-feature-item">
+                <div class="pi-feature-icon"><i class="fas fa-users"></i></div>
+                <h4 id="pi-f4-t">Global Community</h4>
+                <p id="pi-f4-d">Join millions of Pi Network users worldwide in building the next generation of the metaverse.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pi Network Badge -->
+    <div class="pi-badge" onclick="alert('Connect your Pi Wallet to start exploring VR World!')">
+        <i class="fab fa-bitcoin"></i>
+        <span id="pi-badge-text">Powered by Pi</span>
+    </div>
 
     <footer>
         <p id="footer-text">© 2024 VR World. All Virtual Rights Reserved.</p>
@@ -511,11 +657,22 @@
                 document.getElementById('h-btn').innerHTML = 'استكشف مشروعنا<br><span style="font-size: 0.85rem;">Explore Our Project</span>';
                 document.querySelector('.about-title').innerText = 'حول VR WORLD';
                 document.getElementById('c1-t').innerText = 'رؤيتنا';
-                document.getElementById('c1-d').innerText = 'في VR World، نسعى لتوفير تجارب واقع افتراضي لا مثيل لها، نجمع فيها بين التكنولوجيا المتطورة والاتصال ببيئات غامرة مفتوحة للجميع حول العالم. هدفنا هو خلق عوالم جديدة كلياً للمستخدمين للاستكشاف والتعلم والازدهار.';
+                document.getElementById('c1-d').innerText = 'في VR World، نسعى لإحداث ثورة في تجارب الواقع الافتراضي من خلال دمج التكنولوجيا الغامرة المتطورة مع ابتكار البلوكتشين. مهمتنا هي خلق عوالم رقمية لا حدود لها حيث يمكن للمستخدمين الاستكشاف والتواصل والازدهار بطرق لم يسبق لها مثيل.';
                 document.getElementById('c2-t').innerText = 'ماذا نقدم؟';
-                document.getElementById('c2-d').innerText = 'من الألعاب المثيرة والتدريب التفاعلي إلى الجولات الحصرية والتجارب الثقافية الافتراضية، نقدم مجموعة واسعة من تجارب الواقع الافتراضي لتناسب جميع الاهتمامات. استكشف المتاحف الافتراضية، احضر الحفلات الموسيقية الحية، أو انضم إلى ورش العمل التعليمية - كل ذلك من راحة منزلك.';
+                document.getElementById('c2-d').innerText = 'اختبر ترفيه الواقع الافتراضي من الجيل التالي بما في ذلك عوالم الألعاب الغامرة، ومحاكاة التدريب التفاعلي، والحفلات الموسيقية الافتراضية، والمعارض الثقافية، وورش العمل التعليمية. كل ذلك مدعوم بمعاملات Pi Network الآمنة لملكية الأصول الرقمية السلسة.';
                 document.getElementById('c3-t').innerText = 'لماذا VR World؟';
-                document.getElementById('c3-d').innerText = 'نؤمن بقوة الواقع الافتراضي لتغيير الطريقة التي نتفاعل بها مع العالم ومع بعضنا البعض. في VR World، يمكنك زيارة بيئات غريبة وغامرة وآمنة ومبتكرة تتيح لك الاستكشاف والتعلم والاستمتاع بطرق جديدة. مدعوم بـ Pi Network للمعاملات الآمنة واللامركزية.';
+                document.getElementById('c3-d').innerText = 'نستفيد من تقنية البلوكتشين الثورية لشبكة Pi لتمكين المعاملات الآمنة واللامركزية داخل عالمنا الافتراضي. أنشئ وتداول وامتلك الأصول الافتراضية بثقة في نظام بيئي شفاف مصمم لمستقبل التفاعل الرقمي.';
+                document.querySelector('.about-title').innerText = 'حول VR WORLD';
+                document.querySelector('.pi-features-title').innerText = 'مدعوم بشبكة PI';
+                document.getElementById('pi-f1-t').innerText = 'معاملات آمنة';
+                document.getElementById('pi-f1-d').innerText = 'جميع عمليات الشراء داخل العالم وتحويلات الأصول محمية بواسطة بروتوكولات أمان البلوكتشين المتقدمة لشبكة Pi.';
+                document.getElementById('pi-f2-t').innerText = 'اقتصاد لامركزي';
+                document.getElementById('pi-f2-d').innerText = 'ملكية حقيقية للأصول الرقمية مع معاملات شفافة من نظير إلى نظير على بلوكتشين Pi.';
+                document.getElementById('pi-f3-t').innerText = 'سريع وقابل للتطوير';
+                document.getElementById('pi-f3-d').innerText = 'اختبر المعاملات الفورية واللعب السلس بفضل آلية الإجماع الفعالة لشبكة Pi.';
+                document.getElementById('pi-f4-t').innerText = 'مجتمع عالمي';
+                document.getElementById('pi-f4-d').innerText = 'انضم إلى ملايين مستخدمي شبكة Pi في جميع أنحاء العالم في بناء الجيل القادم من الميتافيرس.';
+                document.getElementById('pi-badge-text').innerText = 'مدعوم بـ Pi';
                 document.getElementById('footer-text').innerText = '© 2024 VR World. جميع الحقوق الافتراضية محفوظة.';
                 document.getElementById('footer-text-ar').innerText = 'Our project for the best virtual reality experience';
             } else {
