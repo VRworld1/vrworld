@@ -1,17 +1,156 @@
-/* Hero Section - متطابق مع الصورة */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VR WORLD - Pi Network Integration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --neon-cyan: #00f3ff;
+            --pi-purple: #6d1b7b;
+            --pi-gold: #ffa500;
+            --dark-bg: #020205;
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: var(--dark-bg);
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Particle Background */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(2px 2px at 20% 30%, var(--neon-cyan), transparent),
+                radial-gradient(2px 2px at 60% 70%, var(--pi-gold), transparent),
+                radial-gradient(1px 1px at 50% 50%, white, transparent),
+                radial-gradient(1px 1px at 80% 10%, var(--neon-cyan), transparent),
+                radial-gradient(1px 1px at 10% 80%, var(--pi-purple), transparent);
+            background-size: 200px 200px, 300px 300px, 250px 250px, 350px 350px, 400px 400px;
+            opacity: 0.4;
+            animation: float 15s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-30px) translateX(20px); }
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: rgba(0, 0, 0, 0.95);
+            border-bottom: 2px solid var(--neon-cyan);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-area { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px;
+            z-index: 1;
+        }
+
+        .logo-area img { 
+            height: 45px; 
+            filter: drop-shadow(0 0 12px var(--neon-cyan));
+        }
+
+        .logo-area span {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 20px var(--neon-cyan);
+            letter-spacing: 2px;
+        }
+
+        .nav-actions { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px;
+            z-index: 1;
+        }
+
+        .wallet-btn {
+            background: linear-gradient(135deg, var(--pi-purple), var(--pi-gold));
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 20px rgba(109, 27, 123, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        .wallet-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(255, 165, 0, 0.8);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 2px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover {
+            background: var(--neon-cyan);
+            color: #000;
+        }
+
+        /* Hero Section */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             background: 
-                radial-gradient(ellipse at center, rgba(109, 27, 123, 0.3) 0%, transparent 70%),
-                linear-gradient(180deg, rgba(2,2,5,0.4) 0%, rgba(2,2,5,0.8) 100%),
+                radial-gradient(ellipse at center, rgba(109, 27, 123, 0.4) 0%, transparent 70%),
+                linear-gradient(180deg, rgba(2,2,5,0.3) 0%, rgba(2,2,5,0.9) 100%),
                 url('https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
-            padding: 20px;
+            background-attachment: fixed;
+            padding: 100px 20px 60px;
             position: relative;
+            z-index: 1;
         }
 
         .hero::before {
@@ -22,64 +161,402 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(circle at 20% 50%, rgba(0, 243, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 50%, rgba(109, 27, 123, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 20% 50%, rgba(0, 243, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(109, 27, 123, 0.15) 0%, transparent 50%);
             pointer-events: none;
+            z-index: 0;
         }
 
         .hero-frame {
-            border: 2px solid var(--neon-cyan);
-            padding: 50px;
-            background: rgba(2, 2, 5, 0.85);
-            border-radius: 15px;
-            max-width: 900px;
+            border: 3px solid var(--neon-cyan);
+            padding: 60px 50px;
+            background: rgba(2, 2, 5, 0.9);
+            border-radius: 20px;
+            max-width: 950px;
             text-align: left;
             position: relative;
             box-shadow: 
-                inset 0 0 50px rgba(0, 243, 255, 0.15),
-                0 0 40px rgba(0, 243, 255, 0.2),
-                0 10px 50px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
+                inset 0 0 60px rgba(0, 243, 255, 0.2),
+                0 0 50px rgba(0, 243, 255, 0.3),
+                0 15px 60px rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(15px);
+            z-index: 1;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero-frame::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--neon-cyan), var(--pi-purple), var(--pi-gold), var(--neon-cyan));
-            border-radius: 15px;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, 
+                var(--neon-cyan), 
+                var(--pi-purple), 
+                var(--pi-gold), 
+                var(--neon-cyan));
+            border-radius: 20px;
             z-index: -1;
-            opacity: 0.5;
-            filter: blur(10px);
+            opacity: 0.6;
+            filter: blur(15px);
         }
 
         .hero h1 { 
-            font-size: clamp(2.5rem, 6vw, 4rem); 
+            font-size: clamp(2.5rem, 6vw, 4.5rem); 
             color: var(--neon-cyan); 
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-shadow: 
-                0 0 30px var(--neon-cyan),
-                0 0 60px rgba(0, 243, 255, 0.5),
-                0 5px 15px rgba(0, 0, 0, 0.8);
-            font-weight: 700;
-            letter-spacing: 2px;
+                0 0 40px var(--neon-cyan),
+                0 0 80px rgba(0, 243, 255, 0.5),
+                0 5px 20px rgba(0, 0, 0, 0.9);
+            font-weight: 900;
+            letter-spacing: 3px;
+            line-height: 1.2;
         }
 
         .hero-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--pi-gold);
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             font-family: 'Cairo', sans-serif;
-            text-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
+            text-shadow: 0 0 25px rgba(255, 165, 0, 0.6);
+            font-weight: 600;
         }
 
         .hero p { 
-            font-size: 1.1rem; 
-            color: #e0e0e0; 
-            margin-bottom: 35px; 
-            line-height: 1.8;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 1.15rem; 
+            color: #e8e8e8; 
+            margin-bottom: 40px; 
+            line-height: 1.9;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
         }
+
+        .explore-btn {
+            padding: 20px 50px;
+            background: transparent;
+            border: 3px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 10px;
+            transition: all 0.4s ease;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+
+        .explore-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: var(--neon-cyan);
+            transition: width 0.6s, height 0.6s, top 0.6s, left 0.6s;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .explore-btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .explore-btn:hover { 
+            color: #000; 
+            border-color: var(--neon-cyan);
+            box-shadow: 
+                0 0 40px var(--neon-cyan),
+                0 0 80px rgba(0, 243, 255, 0.5);
+            transform: translateY(-5px);
+        }
+
+        /* About Section */
+        .about {
+            padding: 120px 5% 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            background: 
+                radial-gradient(ellipse at top, rgba(0, 243, 255, 0.05) 0%, transparent 60%),
+                linear-gradient(180deg, var(--dark-bg) 0%, #0a0a0f 100%);
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-title {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            color: var(--neon-cyan);
+            font-weight: 900;
+            text-shadow: 0 0 40px var(--neon-cyan);
+            letter-spacing: 4px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(0, 243, 255, 0.3);
+            padding: 45px 35px;
+            border-radius: 25px;
+            text-align: center;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(8px);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 243, 255, 0.15) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.6s;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .card:hover { 
+            border-color: var(--neon-cyan); 
+            transform: translateY(-20px) scale(1.03);
+            box-shadow: 
+                0 0 50px rgba(0, 243, 255, 0.4),
+                0 25px 80px rgba(0, 0, 0, 0.6),
+                inset 0 0 40px rgba(0, 243, 255, 0.15);
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            color: var(--pi-gold);
+            margin-bottom: 25px;
+            text-shadow: 0 0 30px rgba(255, 165, 0, 0.6);
+            transition: all 0.4s ease;
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.2) rotateY(360deg);
+            color: var(--neon-cyan);
+            text-shadow: 0 0 40px var(--neon-cyan);
+        }
+
+        .card h3 { 
+            color: var(--neon-cyan); 
+            margin-bottom: 25px;
+            font-size: 1.7rem;
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+            font-weight: 700;
+        }
+
+        .card p {
+            color: #c0c0c0;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 50px 5%;
+            text-align: center;
+            border-top: 3px solid var(--neon-cyan);
+            color: #888;
+            position: relative;
+            z-index: 1;
+        }
+
+        footer p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            color: var(--neon-cyan);
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--pi-gold);
+            transform: scale(1.3) translateY(-5px);
+            text-shadow: 0 0 20px var(--pi-gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-frame { 
+                padding: 40px 30px; 
+                text-align: center; 
+            }
+            .nav-actions span { display: none; }
+            header { padding: 12px 5%; }
+            .about-title { font-size: 2rem; top: 25px; }
+            .card-icon { font-size: 3rem; }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+        }
+
+        [lang="ar"] body { 
+            font-family: 'Cairo', sans-serif; 
+            direction: rtl; 
+            text-align: right; 
+        }
+        
+        [lang="ar"] .hero-frame { text-align: right; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <img src="VRLOGO.png" alt="VR World Logo">
+            <span>VR WORLD</span>
+        </div>
+        <div class="nav-actions">
+            <button class="wallet-btn">
+                <i class="fas fa-wallet"></i> <span>Pi Wallet</span>
+            </button>
+            <button class="lang-btn" onclick="toggleLanguage()">العربية</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-frame">
+            <h1 id="h-title">WELCOME TO VR WORLD</h1>
+            <p class="hero-subtitle" id="h-subtitle">مرحباً بك في VR World، نقطة صايحك</p>
+            <p id="h-desc">Discover new horizons and unforgettable experiences in the immersive world of virtual reality. We are here to transport you to worlds you never imagined before, combining cutting-edge VR technology with the revolutionary Pi Network blockchain ecosystem.</p>
+            <a href="#about" class="explore-btn" id="h-btn">EXPLORE OUR PROJECT<br><span style="font-size: 0.85rem; font-family: Cairo;">استكشف مشروعنا</span></a>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-title">ABOUT VR WORLD</div>
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-eye"></i></div>
+            <h3 id="c1-t">OUR VISION</h3>
+            <p id="c1-d">At VR World, we strive to provide unparalleled virtual reality experiences, combining cutting-edge technology and connectivity with immersive environments open to everyone around the world. Our goal is to create entirely new worlds for users to explore, learn, and thrive.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-gamepad"></i></div>
+            <h3 id="c2-t">WHAT WE OFFER?</h3>
+            <p id="c2-d">From exciting games and interactive training to exclusive tours and cultural virtual experiences, we offer a wide range of VR experiences to suit all interests. Explore virtual museums, attend live concerts, or join educational workshops - all from the comfort of your home.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-coins"></i></div>
+            <h3 id="c3-t">WHY VR WORLD?</h3>
+            <p id="c3-d">We believe in the power of virtual reality to change the way we interact with the world and with each other. In VR World, you can visit exotic, immersive, safe, and innovative environments that allow you to explore, learn, and enjoy in new ways. Powered by Pi Network for secure, decentralized transactions.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p id="footer-text">© 2024 VR World. All Virtual Rights Reserved.</p>
+        <p id="footer-text-ar" style="font-family: Cairo;">مشروعنا لأفضل تجربة واقع افتراضي</p>
+        <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleLanguage() {
+            const html = document.documentElement;
+            const btn = document.querySelector('.lang-btn');
+            
+            if (html.getAttribute('lang') === 'en' || !html.getAttribute('lang')) {
+                html.setAttribute('lang', 'ar');
+                btn.innerText = 'English';
+                document.getElementById('h-title').innerText = 'مرحباً بك في VR WORLD';
+                document.getElementById('h-subtitle').innerText = 'Welcome to VR World, your gateway';
+                document.getElementById('h-desc').innerText = 'اكتشف آفاقاً جديدة وتجارب لا تُنسى في عالم الواقع الافتراضي الغامر. نحن هنا لننقلك إلى عوالم لم تتخيلها من قبل، نجمع بين تكنولوجيا الواقع الافتراضي المتطورة ونظام Pi Network البلوكتشين الثوري.';
+                document.getElementById('h-btn').innerHTML = 'استكشف مشروعنا<br><span style="font-size: 0.85rem;">Explore Our Project</span>';
+                document.querySelector('.about-title').innerText = 'حول VR WORLD';
+                document.getElementById('c1-t').innerText = 'رؤيتنا';
+                document.getElementById('c1-d').innerText = 'في VR World، نسعى لتوفير تجارب واقع افتراضي لا مثيل لها، نجمع فيها بين التكنولوجيا المتطورة والاتصال ببيئات غامرة مفتوحة للجميع حول العالم. هدفنا هو خلق عوالم جديدة كلياً للمستخدمين للاستكشاف والتعلم والازدهار.';
+                document.getElementById('c2-t').innerText = 'ماذا نقدم؟';
+                document.getElementById('c2-d').innerText = 'من الألعاب المثيرة والتدريب التفاعلي إلى الجولات الحصرية والتجارب الثقافية الافتراضية، نقدم مجموعة واسعة من تجارب الواقع الافتراضي لتناسب جميع الاهتمامات. استكشف المتاحف الافتراضية، احضر الحفلات الموسيقية الحية، أو انضم إلى ورش العمل التعليمية - كل ذلك من راحة منزلك.';
+                document.getElementById('c3-t').innerText = 'لماذا VR World؟';
+                document.getElementById('c3-d').innerText = 'نؤمن بقوة الواقع الافتراضي لتغيير الطريقة التي نتفاعل بها مع العالم ومع بعضنا البعض. في VR World، يمكنك زيارة بيئات غريبة وغامرة وآمنة ومبتكرة تتيح لك الاستكشاف والتعلم والاستمتاع بطرق جديدة. مدعوم بـ Pi Network للمعاملات الآمنة واللامركزية.';
+                document.getElementById('footer-text').innerText = '© 2024 VR World. جميع الحقوق الافتراضية محفوظة.';
+                document.getElementById('footer-text-ar').innerText = 'Our project for the best virtual reality experience';
+            } else {
+                location.reload(); 
+            }
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Card animation on scroll
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 150);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'all 0.8s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
