@@ -143,7 +143,7 @@
             align-items: center;
             justify-content: center;
             background: 
-                linear-gradient(180deg, rgba(2,2,5,0.5) 0%, rgba(2,2,5,0.8) 100%),
+                linear-gradient(180deg, rgba(2,2,5,0.4) 0%, rgba(2,2,5,0.85) 100%),
                 url('https://i.postimg.cc/C1DqYKSY/VR-WORLD-BG.png');
             background-size: cover;
             background-position: center;
@@ -472,6 +472,8 @@
             border-radius: 20px;
             text-align: center;
             transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(50px);
         }
 
         .pi-feature-item:hover {
@@ -500,12 +502,14 @@
             line-height: 1.7;
             font-size: 1rem;
         }
+
+        /* Footer */
         footer {
             background: rgba(0, 0, 0, 0.95);
             padding: 50px 5%;
             text-align: center;
             border-top: 3px solid var(--neon-cyan);
-            color: #888;
+            color: #999;
             position: relative;
             z-index: 1;
         }
@@ -513,6 +517,7 @@
         footer p {
             margin-bottom: 15px;
             font-size: 1.05rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
         }
 
         .social-links {
@@ -546,6 +551,7 @@
             .card-icon { font-size: 3rem; }
             .hero h1 { font-size: 2rem; }
             .hero p { font-size: 1rem; }
+            .pi-badge { bottom: 20px; right: 20px; padding: 12px 20px; }
         }
 
         [lang="ar"] body { 
@@ -555,6 +561,8 @@
         }
         
         [lang="ar"] .hero-frame { text-align: right; }
+        [lang="ar"] .card { text-align: right; }
+        [lang="ar"] .pi-feature-item { text-align: right; }
     </style>
 </head>
 <body>
@@ -575,9 +583,9 @@
     <section class="hero">
         <div class="hero-frame">
             <h1 id="h-title">WELCOME TO VR WORLD</h1>
-            <p class="hero-subtitle" id="h-subtitle">مرحباً بك في VR World، نقطة صايحك</p>
+            <p class="hero-subtitle" id="h-subtitle">Your Gateway to Infinite Worlds</p>
             <p id="h-desc">Discover new horizons and unforgettable experiences in the immersive world of virtual reality. We are here to transport you to worlds you never imagined before, combining cutting-edge VR technology with the revolutionary Pi Network blockchain ecosystem.</p>
-            <a href="#about" class="explore-btn" id="h-btn">EXPLORE OUR PROJECT<br><span style="font-size: 0.85rem; font-family: Cairo;">استكشف مشروعنا</span></a>
+            <a href="#about" class="explore-btn" id="h-btn">EXPLORE OUR PROJECT</a>
         </div>
     </section>
 
@@ -635,7 +643,7 @@
 
     <footer>
         <p id="footer-text">© 2024 VR World. All Virtual Rights Reserved.</p>
-        <p id="footer-text-ar" style="font-family: Cairo;">مشروعنا لأفضل تجربة واقع افتراضي</p>
+        <p id="footer-text-ar" style="font-family: Cairo;">Our project for the best virtual reality experience</p>
         <div class="social-links">
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
             <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
@@ -650,12 +658,21 @@
             const btn = document.querySelector('.lang-btn');
             
             if (html.getAttribute('lang') === 'en' || !html.getAttribute('lang')) {
+                // التحويل للعربية
                 html.setAttribute('lang', 'ar');
                 btn.innerText = 'English';
+                
+                // Header
+                document.getElementById('logo-text').innerText = 'عالم الواقع الافتراضي';
+                document.getElementById('wallet-text').innerText = 'محفظة Pi';
+                
+                // Hero Section
                 document.getElementById('h-title').innerText = 'مرحباً بك في VR WORLD';
-                document.getElementById('h-subtitle').innerText = 'Welcome to VR World, your gateway';
+                document.getElementById('h-subtitle').innerText = 'بوابتك إلى عوالم لا نهائية';
                 document.getElementById('h-desc').innerText = 'اكتشف آفاقاً جديدة وتجارب لا تُنسى في عالم الواقع الافتراضي الغامر. نحن هنا لننقلك إلى عوالم لم تتخيلها من قبل، نجمع بين تكنولوجيا الواقع الافتراضي المتطورة ونظام Pi Network البلوكتشين الثوري.';
-                document.getElementById('h-btn').innerHTML = 'استكشف مشروعنا<br><span style="font-size: 0.85rem;">Explore Our Project</span>';
+                document.getElementById('h-btn').innerText = 'استكشف مشروعنا';
+                
+                // About Section
                 document.querySelector('.about-title').innerText = 'حول VR WORLD';
                 document.getElementById('c1-t').innerText = 'رؤيتنا';
                 document.getElementById('c1-d').innerText = 'في VR World، نسعى لإحداث ثورة في تجارب الواقع الافتراضي من خلال دمج التكنولوجيا الغامرة المتطورة مع ابتكار البلوكتشين. مهمتنا هي خلق عوالم رقمية لا حدود لها حيث يمكن للمستخدمين الاستكشاف والتواصل والازدهار بطرق لم يسبق لها مثيل.';
@@ -663,7 +680,8 @@
                 document.getElementById('c2-d').innerText = 'اختبر ترفيه الواقع الافتراضي من الجيل التالي بما في ذلك عوالم الألعاب الغامرة، ومحاكاة التدريب التفاعلي، والحفلات الموسيقية الافتراضية، والمعارض الثقافية، وورش العمل التعليمية. كل ذلك مدعوم بمعاملات Pi Network الآمنة لملكية الأصول الرقمية السلسة.';
                 document.getElementById('c3-t').innerText = 'لماذا VR World؟';
                 document.getElementById('c3-d').innerText = 'نستفيد من تقنية البلوكتشين الثورية لشبكة Pi لتمكين المعاملات الآمنة واللامركزية داخل عالمنا الافتراضي. أنشئ وتداول وامتلك الأصول الافتراضية بثقة في نظام بيئي شفاف مصمم لمستقبل التفاعل الرقمي.';
-                document.querySelector('.about-title').innerText = 'حول VR WORLD';
+                
+                // Pi Network Section
                 document.querySelector('.pi-features-title').innerText = 'مدعوم بشبكة PI';
                 document.getElementById('pi-f1-t').innerText = 'معاملات آمنة';
                 document.getElementById('pi-f1-d').innerText = 'جميع عمليات الشراء داخل العالم وتحويلات الأصول محمية بواسطة بروتوكولات أمان البلوكتشين المتقدمة لشبكة Pi.';
@@ -673,11 +691,55 @@
                 document.getElementById('pi-f3-d').innerText = 'اختبر المعاملات الفورية واللعب السلس بفضل آلية الإجماع الفعالة لشبكة Pi.';
                 document.getElementById('pi-f4-t').innerText = 'مجتمع عالمي';
                 document.getElementById('pi-f4-d').innerText = 'انضم إلى ملايين مستخدمي شبكة Pi في جميع أنحاء العالم في بناء الجيل القادم من الميتافيرس.';
+                
+                // Pi Badge
                 document.getElementById('pi-badge-text').innerText = 'مدعوم بـ Pi';
+                
+                // Footer
                 document.getElementById('footer-text').innerText = '© 2024 VR World. جميع الحقوق الافتراضية محفوظة.';
-                document.getElementById('footer-text-ar').innerText = 'Our project for the best virtual reality experience';
+                document.getElementById('footer-text-ar').innerText = 'مشروعنا لأفضل تجربة واقع افتراضي في العالم';
+                
             } else {
-                location.reload(); 
+                // التحويل للإنجليزية
+                html.setAttribute('lang', 'en');
+                btn.innerText = 'العربية';
+                
+                // Header
+                document.getElementById('logo-text').innerText = 'VR WORLD';
+                document.getElementById('wallet-text').innerText = 'Pi Wallet';
+                
+                // Hero Section
+                document.getElementById('h-title').innerText = 'WELCOME TO VR WORLD';
+                document.getElementById('h-subtitle').innerText = 'Your Gateway to Infinite Worlds';
+                document.getElementById('h-desc').innerText = 'Discover new horizons and unforgettable experiences in the immersive world of virtual reality. We are here to transport you to worlds you never imagined before, combining cutting-edge VR technology with the revolutionary Pi Network blockchain ecosystem.';
+                document.getElementById('h-btn').innerText = 'EXPLORE OUR PROJECT';
+                
+                // About Section
+                document.querySelector('.about-title').innerText = 'ABOUT VR WORLD';
+                document.getElementById('c1-t').innerText = 'OUR VISION';
+                document.getElementById('c1-d').innerText = 'At VR World, we strive to revolutionize virtual reality experiences by merging cutting-edge immersive technology with blockchain innovation. Our mission is to create boundless digital worlds where users can explore, connect, and thrive in ways never before imagined.';
+                document.getElementById('c2-t').innerText = 'WHAT WE OFFER?';
+                document.getElementById('c2-d').innerText = 'Experience next-generation VR entertainment including immersive gaming worlds, interactive training simulations, virtual concerts, cultural exhibitions, and educational workshops. All powered by secure Pi Network transactions for seamless digital asset ownership.';
+                document.getElementById('c3-t').innerText = 'WHY VR WORLD?';
+                document.getElementById('c3-d').innerText = 'We leverage Pi Network\'s revolutionary blockchain technology to enable secure, decentralized transactions within our metaverse. Create, trade, and own virtual assets with confidence in a transparent ecosystem designed for the future of digital interaction.';
+                
+                // Pi Network Section
+                document.querySelector('.pi-features-title').innerText = 'POWERED BY PI NETWORK';
+                document.getElementById('pi-f1-t').innerText = 'Secure Transactions';
+                document.getElementById('pi-f1-d').innerText = 'All in-world purchases and asset transfers are protected by Pi Network\'s advanced blockchain security protocols.';
+                document.getElementById('pi-f2-t').innerText = 'Decentralized Economy';
+                document.getElementById('pi-f2-d').innerText = 'True ownership of digital assets with transparent, peer-to-peer transactions on the Pi blockchain.';
+                document.getElementById('pi-f3-t').innerText = 'Fast & Scalable';
+                document.getElementById('pi-f3-d').innerText = 'Experience instant transactions and seamless gameplay thanks to Pi Network\'s efficient consensus mechanism.';
+                document.getElementById('pi-f4-t').innerText = 'Global Community';
+                document.getElementById('pi-f4-d').innerText = 'Join millions of Pi Network users worldwide in building the next generation of the metaverse.';
+                
+                // Pi Badge
+                document.getElementById('pi-badge-text').innerText = 'Powered by Pi';
+                
+                // Footer
+                document.getElementById('footer-text').innerText = '© 2024 VR World. All Virtual Rights Reserved.';
+                document.getElementById('footer-text-ar').innerText = 'Our project for the best virtual reality experience';
             }
         }
 
@@ -709,7 +771,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.card').forEach(card => {
+        document.querySelectorAll('.card, .pi-feature-item').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(50px)';
             card.style.transition = 'all 0.8s ease';
