@@ -10,7 +10,7 @@
         :root {
             --neon-cyan: #00f3ff;
             --neon-purple: #bc13fe;
-            --pi-yellow: #ffa500; /* لون محفظة Pi */
+            --pi-yellow: #ffa500;
             --dark-bg: #020205;
         }
 
@@ -21,135 +21,151 @@
             background-color: var(--dark-bg);
             color: #fff;
             overflow-x: hidden;
-            background-image: radial-gradient(circle at 50% 50%, #101025 0%, #020205 100%);
+            line-height: 1.4;
         }
 
-        /* الهيدر الاحترافي */
+        /* الهيدر - متوافق مع الموبايل */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            background: rgba(0, 0, 0, 0.8);
-            border-bottom: 1px solid rgba(0, 243, 255, 0.3);
-            position: sticky;
+            padding: 15px 5%;
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 2px solid var(--neon-cyan);
+            position: fixed;
+            width: 100%;
             top: 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
         }
 
-        .logo-area { display: flex; align-items: center; gap: 15px; }
-        .logo-area img { height: 45px; filter: drop-shadow(0 0 5px var(--neon-cyan)); }
+        .logo-area { display: flex; align-items: center; gap: 10px; }
+        .logo-area img { height: 35px; filter: drop-shadow(0 0 5px var(--neon-cyan)); }
+        .logo-area span { font-size: 1.2rem; font-weight: bold; color: var(--neon-cyan); }
 
-        .nav-actions { display: flex; align-items: center; gap: 20px; }
+        .nav-actions { display: flex; align-items: center; gap: 10px; }
 
-        /* زر محفظة Pi */
         .wallet-btn {
-            background: linear-gradient(45deg, #6d1b7b, #ffa500);
+            background: linear-gradient(45deg, #6d1b7b, var(--pi-yellow));
             border: none;
-            padding: 10px 18px;
-            border-radius: 8px;
+            padding: 8px 12px;
+            border-radius: 5px;
             color: white;
             cursor: pointer;
+            font-size: 11px;
             font-weight: bold;
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 13px;
-            transition: 0.3s;
-            box-shadow: 0 0 15px rgba(255, 165, 0, 0.3);
+            gap: 5px;
+            box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
         }
-        .wallet-btn:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(255, 165, 0, 0.5); }
 
         .lang-btn {
             background: transparent;
             border: 1px solid var(--neon-cyan);
             color: var(--neon-cyan);
-            padding: 8px 15px;
-            border-radius: 5px;
+            padding: 6px 10px;
+            border-radius: 4px;
             cursor: pointer;
             font-family: 'Cairo', sans-serif;
+            font-size: 12px;
         }
 
-        /* قسم الهيرو المستوحى من الصورة */
+        /* قسم الهيرو - صورة خلفية حقيقية */
         .hero {
-            height: 90vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 5%;
-            background: url('https://images.unsplash.com/photo-1614850523296-d8c1af93d400?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            padding: 100px 20px 50px;
+            /* استخدمت خلفية سايبربانك لضمان الظهور */
+            background: linear-gradient(rgba(2, 2, 5, 0.7), rgba(2, 2, 5, 0.7)), 
+                        url('https://wallpaperaccess.com/full/1903024.jpg');
             background-size: cover;
             background-position: center;
-            position: relative;
+            background-attachment: fixed;
         }
 
         .hero-frame {
             border: 2px solid var(--neon-cyan);
-            padding: 40px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
-            border-radius: 20px;
-            max-width: 900px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            max-width: 800px;
+            text-align: center;
             position: relative;
-            box-shadow: inset 0 0 50px rgba(0, 243, 255, 0.2);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
         }
 
-        /* الخطوط التقنية في الزوايا */
-        .hero-frame::before {
-            content: ''; position: absolute; top: -10px; left: -10px; width: 50px; height: 50px;
-            border-top: 4px solid var(--neon-purple); border-left: 4px solid var(--neon-purple);
+        .hero h1 { 
+            font-size: 2.2rem; 
+            color: var(--neon-cyan); 
+            text-shadow: 0 0 15px var(--neon-cyan); 
+            margin-bottom: 15px;
         }
 
-        .hero h1 { font-size: 3.5rem; color: var(--neon-cyan); text-shadow: 0 0 20px var(--neon-cyan); margin-bottom: 20px; }
-        .hero p { font-size: 1.1rem; line-height: 1.8; color: #d1d1d1; margin-bottom: 30px; }
+        .hero p { font-size: 1rem; color: #e0e0e0; margin-bottom: 25px; }
 
         .explore-btn {
-            padding: 15px 40px;
-            background: linear-gradient(to right, var(--neon-cyan), var(--neon-purple));
+            padding: 12px 30px;
+            background: linear-gradient(to right, #00f3ff, #bc13fe);
             color: white;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 5px;
             font-weight: bold;
+            font-size: 0.9rem;
             display: inline-block;
-            box-shadow: 0 5px 20px rgba(0, 243, 255, 0.4);
-        }
-
-        /* قسم البطاقات السفلي */
-        .about-section { padding: 80px 5%; text-align: center; }
-        .section-title { font-size: 2.5rem; color: var(--neon-cyan); margin-bottom: 50px; letter-spacing: 3px; }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            padding: 40px;
-            border-radius: 15px;
             transition: 0.3s;
         }
 
-        .card:hover {
-            background: rgba(0, 243, 255, 0.05);
-            border-color: var(--neon-cyan);
-            transform: translateY(-10px);
+        /* قسم البطاقات - تصميم عمودي للموبايل */
+        .about-section { padding: 60px 5%; background: #05050a; }
+        .section-title { 
+            font-size: 1.8rem; 
+            color: var(--neon-cyan); 
+            margin-bottom: 40px; 
+            text-align: center;
+            border-bottom: 1px solid var(--neon-cyan);
+            display: inline-block;
+            width: 100%;
         }
 
-        .card h3 { color: var(--neon-cyan); margin-bottom: 15px; }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--neon-cyan);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .card h3 { color: var(--neon-cyan); margin-bottom: 10px; font-size: 1.2rem; }
+        .card p { font-size: 0.9rem; color: #ccc; }
 
         footer {
-            padding: 40px;
+            padding: 30px;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: #000;
+            font-size: 11px;
             color: #666;
-            font-size: 13px;
+            border-top: 1px solid var(--neon-cyan);
         }
 
-        /* تعديلات RTL */
+        /* تعديلات الموبايل (Responsive) */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8rem; }
+            .logo-area span { display: none; } /* إخفاء النص بجانب اللوجو في الموبايل لزيادة المساحة */
+            .nav-actions { gap: 5px; }
+            .wallet-btn span { display: none; } /* إخفاء نص الزر وإبقاء الأيقونة فقط */
+            .hero-frame { padding: 20px; }
+        }
+
+        /* تعديلات RTL للعربية */
         [lang="ar"] body { font-family: 'Cairo', sans-serif; direction: rtl; text-align: right; }
     </style>
 </head>
@@ -162,7 +178,7 @@
         </div>
         <div class="nav-actions">
             <button class="wallet-btn">
-                <i class="fab fa-ethereum"></i> Connect Pi Wallet
+                <i class="fab fa-ethereum"></i> <span>Connect Pi</span>
             </button>
             <button class="lang-btn" onclick="toggleLanguage()">العربية</button>
         </div>
@@ -171,31 +187,31 @@
     <section class="hero">
         <div class="hero-frame">
             <h1 id="h-title">WELCOME TO VR WORLD</h1>
-            <p id="h-desc">Discover new horizons and unforgettable experiences in the immersive world of virtual reality. We are here to transport you to worlds you never imagined before.</p>
-            <a href="#" class="explore-btn" id="h-btn">EXPLORE OUR PROJECT</a>
+            <p id="h-desc">Explore the future of reality. Dive into immersive digital worlds with the latest VR technology and blockchain integration.</p>
+            <a href="#about" class="explore-btn" id="h-btn">EXPLORE PROJECT</a>
         </div>
     </section>
 
-    <section class="about-section">
+    <section class="about-section" id="about">
         <h2 class="section-title" id="s-title">ABOUT VR WORLD</h2>
         <div class="grid-container">
             <div class="card">
                 <h3 id="c1-t">OUR VISION</h3>
-                <p id="c1-d">We strive to provide an unparalleled virtual reality experience combining cutting-edge technology.</p>
+                <p id="c1-d">Creating a bridge between reality and the digital metaverse through high-end VR.</p>
             </div>
             <div class="card">
-                <h3 id="c2-t">WHAT WE OFFER?</h3>
-                <p id="c2-d">From exciting games to interactive training and cultural virtual tours.</p>
+                <h3 id="c2-t">PI NETWORK</h3>
+                <p id="c2-d">Integrated with Pi Network for secure and decentralized virtual transactions.</p>
             </div>
             <div class="card">
-                <h3 id="c3-t">WHY VR WORLD?</h3>
-                <p id="c3-d">Secure, innovative, and immersive experiences that change how you interact with the world.</p>
+                <h3 id="c3-t">WHY US?</h3>
+                <p id="c3-d">Advanced graphics, low latency, and a community-driven virtual world.</p>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 VR World. All Rights Reserved. | Integrated with Pi Network</p>
+        <p>&copy; 2024 VR World. All Rights Reserved. | Powered by Pi Network</p>
     </footer>
 
     <script>
@@ -207,16 +223,14 @@
                 html.setAttribute('lang', 'ar');
                 btn.innerText = 'English';
                 document.getElementById('h-title').innerText = 'مرحباً بك في عالم VR';
-                document.getElementById('h-desc').innerText = 'اكتشف آفاقاً جديدة وتجارب لا تُنسى في عالم الواقع الافتراضي الغامر. نحن هنا لنقلك إلى عوالم لم تتخيلها من قبل.';
-                document.getElementById('h-btn').innerText = 'اكتشف مشروعنا';
-                document.getElementById('s-title').innerText = 'حول مشروعنا';
-                document.querySelector('.wallet-btn').innerHTML = '<i class="fab fa-ethereum"></i> ربط محفظة Pi';
-                // تحديث البطاقات...
+                document.getElementById('h-desc').innerText = 'استكشف مستقبل الواقع. انغمس في عوالم رقمية غامرة مع أحدث تقنيات الواقع الافتراضي وتكامل البلوكشين.';
+                document.getElementById('h-btn').innerText = 'اكتشف المشروع';
+                document.getElementById('s-title').innerText = 'حول VR WORLD';
                 document.getElementById('c1-t').innerText = 'رؤيتنا';
-                document.getElementById('c2-t').innerText = 'ماذا نقدم؟';
+                document.getElementById('c2-t').innerText = 'شبكة Pi';
                 document.getElementById('c3-t').innerText = 'لماذا نحن؟';
             } else {
-                location.reload(); // لإعادة الوضع الإنجليزي بسهولة
+                location.reload(); 
             }
         }
     </script>
