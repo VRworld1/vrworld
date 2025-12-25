@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VR WORLD - The Future</title>
+    <title>VR WORLD - Pi Network Integration</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --neon-cyan: #00f3ff;
-            --neon-purple: #bc13fe;
-            --pi-yellow: #ffa500;
+            --pi-purple: #6d1b7b;
+            --pi-gold: #ffa500;
             --dark-bg: #020205;
         }
 
@@ -21,10 +21,9 @@
             background-color: var(--dark-bg);
             color: #fff;
             overflow-x: hidden;
-            line-height: 1.4;
         }
 
-        /* الهيدر - متوافق مع الموبايل */
+        /* Header */
         header {
             display: flex;
             justify-content: space-between;
@@ -40,132 +39,110 @@
         }
 
         .logo-area { display: flex; align-items: center; gap: 10px; }
-        .logo-area img { height: 35px; filter: drop-shadow(0 0 5px var(--neon-cyan)); }
-        .logo-area span { font-size: 1.2rem; font-weight: bold; color: var(--neon-cyan); }
+        /* الرابط المحدث للشعار بناءً على طلبك */
+        .logo-area img { height: 40px; filter: drop-shadow(0 0 8px var(--neon-cyan)); }
 
-        .nav-actions { display: flex; align-items: center; gap: 10px; }
+        .nav-actions { display: flex; align-items: center; gap: 15px; }
 
+        /* زر المحفظة المستوحى من Pi */
         .wallet-btn {
-            background: linear-gradient(45deg, #6d1b7b, var(--pi-yellow));
+            background: linear-gradient(45deg, var(--pi-purple), var(--pi-gold));
             border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
+            padding: 10px 15px;
+            border-radius: 8px;
             color: white;
             cursor: pointer;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: bold;
             display: flex;
             align-items: center;
-            gap: 5px;
-            box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
+            gap: 8px;
+            box-shadow: 0 0 15px rgba(109, 27, 123, 0.5);
         }
 
         .lang-btn {
             background: transparent;
             border: 1px solid var(--neon-cyan);
             color: var(--neon-cyan);
-            padding: 6px 10px;
-            border-radius: 4px;
+            padding: 7px 12px;
+            border-radius: 5px;
             cursor: pointer;
             font-family: 'Cairo', sans-serif;
-            font-size: 12px;
         }
 
-        /* قسم الهيرو - صورة خلفية حقيقية */
+        /* Hero Section - تطابق الصورة */
         .hero {
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 100px 20px 50px;
-            /* استخدمت خلفية سايبربانك لضمان الظهور */
-            background: linear-gradient(rgba(2, 2, 5, 0.7), rgba(2, 2, 5, 0.7)), 
-                        url('https://wallpaperaccess.com/full/1903024.jpg');
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            padding: 20px;
         }
 
         .hero-frame {
             border: 2px solid var(--neon-cyan);
-            padding: 30px;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 15px;
-            max-width: 800px;
-            text-align: center;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.75);
+            border-radius: 20px;
+            max-width: 850px;
+            text-align: left;
             position: relative;
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+            box-shadow: inset 0 0 30px rgba(0, 243, 255, 0.2);
         }
 
         .hero h1 { 
-            font-size: 2.2rem; 
+            font-size: clamp(2rem, 5vw, 3.5rem); 
             color: var(--neon-cyan); 
-            text-shadow: 0 0 15px var(--neon-cyan); 
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px var(--neon-cyan);
         }
 
-        .hero p { font-size: 1rem; color: #e0e0e0; margin-bottom: 25px; }
+        .hero p { font-size: 1.1rem; color: #ccc; margin-bottom: 30px; line-height: 1.6; }
 
         .explore-btn {
-            padding: 12px 30px;
-            background: linear-gradient(to right, #00f3ff, #bc13fe);
-            color: white;
+            padding: 15px 35px;
+            background: transparent;
+            border: 2px solid var(--neon-cyan);
+            color: var(--neon-cyan);
             text-decoration: none;
-            border-radius: 5px;
             font-weight: bold;
-            font-size: 0.9rem;
-            display: inline-block;
+            border-radius: 5px;
             transition: 0.3s;
         }
 
-        /* قسم البطاقات - تصميم عمودي للموبايل */
-        .about-section { padding: 60px 5%; background: #05050a; }
-        .section-title { 
-            font-size: 1.8rem; 
-            color: var(--neon-cyan); 
-            margin-bottom: 40px; 
-            text-align: center;
-            border-bottom: 1px solid var(--neon-cyan);
-            display: inline-block;
-            width: 100%;
-        }
+        .explore-btn:hover { background: var(--neon-cyan); color: #000; box-shadow: 0 0 30px var(--neon-cyan); }
 
-        .grid-container {
+        /* Cards Section */
+        .about {
+            padding: 80px 5%;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 25px;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--neon-cyan);
-            padding: 25px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .card h3 { color: var(--neon-cyan); margin-bottom: 10px; font-size: 1.2rem; }
-        .card p { font-size: 0.9rem; color: #ccc; }
-
-        footer {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 243, 255, 0.3);
             padding: 30px;
+            border-radius: 15px;
             text-align: center;
-            background: #000;
-            font-size: 11px;
-            color: #666;
-            border-top: 1px solid var(--neon-cyan);
+            transition: 0.3s;
         }
 
-        /* تعديلات الموبايل (Responsive) */
-        @media (max-width: 600px) {
-            .hero h1 { font-size: 1.8rem; }
-            .logo-area span { display: none; } /* إخفاء النص بجانب اللوجو في الموبايل لزيادة المساحة */
-            .nav-actions { gap: 5px; }
-            .wallet-btn span { display: none; } /* إخفاء نص الزر وإبقاء الأيقونة فقط */
-            .hero-frame { padding: 20px; }
+        .card:hover { border-color: var(--neon-cyan); transform: translateY(-10px); }
+        .card h3 { color: var(--neon-cyan); margin-bottom: 15px; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-frame { padding: 25px; text-align: center; }
+            .nav-actions span { display: none; }
+            header { padding: 10px 5%; }
         }
 
-        /* تعديلات RTL للعربية */
         [lang="ar"] body { font-family: 'Cairo', sans-serif; direction: rtl; text-align: right; }
     </style>
 </head>
@@ -173,12 +150,12 @@
 
     <header>
         <div class="logo-area">
-            <img src="https://vrworld1.github.io/vrworld/VRLOGO.png" alt="VR World Logo">
+            <img src="VRLOGO.png" alt="VR World Logo">
             <span>VR WORLD</span>
         </div>
         <div class="nav-actions">
             <button class="wallet-btn">
-                <i class="fab fa-ethereum"></i> <span>Connect Pi</span>
+                <i class="fas fa-wallet"></i> <span>Pi Wallet</span>
             </button>
             <button class="lang-btn" onclick="toggleLanguage()">العربية</button>
         </div>
@@ -187,32 +164,25 @@
     <section class="hero">
         <div class="hero-frame">
             <h1 id="h-title">WELCOME TO VR WORLD</h1>
-            <p id="h-desc">Explore the future of reality. Dive into immersive digital worlds with the latest VR technology and blockchain integration.</p>
-            <a href="#about" class="explore-btn" id="h-btn">EXPLORE PROJECT</a>
+            <p id="h-desc">Discover new horizons and unforgettable experiences in the immersive world of virtual reality. We are here to transport you to worlds you never imagined before.</p>
+            <a href="#about" class="explore-btn" id="h-btn">EXPLORE OUR PROJECT</a>
         </div>
     </section>
 
-    <section class="about-section" id="about">
-        <h2 class="section-title" id="s-title">ABOUT VR WORLD</h2>
-        <div class="grid-container">
-            <div class="card">
-                <h3 id="c1-t">OUR VISION</h3>
-                <p id="c1-d">Creating a bridge between reality and the digital metaverse through high-end VR.</p>
-            </div>
-            <div class="card">
-                <h3 id="c2-t">PI NETWORK</h3>
-                <p id="c2-d">Integrated with Pi Network for secure and decentralized virtual transactions.</p>
-            </div>
-            <div class="card">
-                <h3 id="c3-t">WHY US?</h3>
-                <p id="c3-d">Advanced graphics, low latency, and a community-driven virtual world.</p>
-            </div>
+    <section class="about" id="about">
+        <div class="card">
+            <h3 id="c1-t">OUR VISION</h3>
+            <p id="c1-d">Bringing the metaverse closer through the Pi Network ecosystem and immersive VR tech.</p>
+        </div>
+        <div class="card">
+            <h3 id="c2-t">WHAT WE OFFER?</h3>
+            <p id="c2-d">Interactive virtual environments and decentralized asset ownership.</p>
+        </div>
+        <div class="card">
+            <h3 id="c3-t">WHY PI NETWORK?</h3>
+            <p id="c3-d">Fast, secure, and accessible blockchain for the next generation of VR users.</p>
         </div>
     </section>
-
-    <footer>
-        <p>&copy; 2024 VR World. All Rights Reserved. | Powered by Pi Network</p>
-    </footer>
 
     <script>
         function toggleLanguage() {
@@ -222,13 +192,12 @@
             if (html.getAttribute('lang') === 'en') {
                 html.setAttribute('lang', 'ar');
                 btn.innerText = 'English';
-                document.getElementById('h-title').innerText = 'مرحباً بك في عالم VR';
-                document.getElementById('h-desc').innerText = 'استكشف مستقبل الواقع. انغمس في عوالم رقمية غامرة مع أحدث تقنيات الواقع الافتراضي وتكامل البلوكشين.';
-                document.getElementById('h-btn').innerText = 'اكتشف المشروع';
-                document.getElementById('s-title').innerText = 'حول VR WORLD';
+                document.getElementById('h-title').innerText = 'مرحباً بك في VR WORLD';
+                document.getElementById('h-desc').innerText = 'اكتشف آفاقاً جديدة وتجارب لا تُنسى في عالم الواقع الافتراضي. نحن هنا لنقلك إلى عوالم لم تتخيلها من قبل.';
+                document.getElementById('h-btn').innerText = 'اكتشف مشروعنا';
                 document.getElementById('c1-t').innerText = 'رؤيتنا';
-                document.getElementById('c2-t').innerText = 'شبكة Pi';
-                document.getElementById('c3-t').innerText = 'لماذا نحن؟';
+                document.getElementById('c2-t').innerText = 'ماذا نقدم؟';
+                document.getElementById('c3-t').innerText = 'لماذا Pi Network؟';
             } else {
                 location.reload(); 
             }
