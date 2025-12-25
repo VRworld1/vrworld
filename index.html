@@ -1,235 +1,264 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VR World - عالم الواقع الافتراضي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <title>VR World - Beyond Reality</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* الأنماط الأساسية */
-        body {
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-purple: #bc13fe;
+            --dark-bg: #050505;
+            --card-bg: rgba(20, 20, 35, 0.8);
+        }
+
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif; /* خط مستقبلي للإنجليزية */
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* لغة عربية مخصصة */
+        [lang="ar"] {
             font-family: 'Cairo', sans-serif;
-            line-height: 1.6;
-            color: #eee; /* لون نص فاتح للتباين مع الخلفية الداكنة */
-            background-color: #1a1a2e; /* خلفية داكنة */
-            direction: rtl; /* لغة عربية من اليمين لليسار */
-            text-align: right; /* محاذاة النص لليمين */
-            overflow-x: hidden; /* لمنع شريط التمرير الأفقي */
-        }
-
-        /* رأس الصفحة (Hero Section) */
-        .hero-section {
-            position: relative;
-            height: 100vh; /* ارتفاع الشاشة بالكامل */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            overflow: hidden; /* لإخفاء أي جزء زائد من الصورة */
-        }
-
-        .hero-section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://via.placeholder.com/1920x1080/0d0d1a/ffffff?text=VR+World+Background'); /* صورة خلفية جذابة */
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.4) blur(2px); /* تعتيم وتغبيش بسيط للخلفية */
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            padding: 20px;
-            max-width: 900px;
-            background: rgba(0, 0, 0, 0.4); /* خلفية شبه شفافة للمحتوى */
-            border-radius: 10px;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5em;
-            margin-bottom: 15px;
-            color: #00bcd4; /* لون أزرق سماوي مميز */
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-        }
-
-        .hero-content p {
-            font-size: 1.3em;
-            margin-bottom: 30px;
-            color: #e0f2f7;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: #00bcd4;
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
-        }
-
-        .cta-button:hover {
-            background-color: #0097a7;
-            transform: translateY(-3px);
-        }
-
-        /* قسم حول المشروع */
-        .about-section {
-            padding: 80px 40px;
-            background-color: #2a2a4a; /* لون أغمق قليلاً من الخلفية الأساسية */
-            text-align: center;
-        }
-
-        .about-section h2 {
-            font-size: 2.5em;
-            color: #00bcd4;
-            margin-bottom: 40px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .about-section h2::after {
-            content: '';
-            position: absolute;
-            width: 70%;
-            height: 4px;
-            background-color: #00bcd4;
-            bottom: -10px;
-            right: 15%; /* لتوسيط الخط تحت العنوان في RTL */
-            border-radius: 2px;
-        }
-
-        .about-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .about-card {
-            background-color: #3a3a5a;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            flex: 1;
-            min-width: 300px;
-            max-width: 450px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            direction: rtl;
             text-align: right;
         }
 
-        .about-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        /* الهيدر وزر اللغة */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
         }
 
-        .about-card h3 {
-            color: #00bcd4;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            position: relative;
-            padding-bottom: 10px;
+        .logo img {
+            height: 50px;
+            filter: drop-shadow(0 0 10px var(--neon-blue));
         }
-        
-        .about-card h3::after {
+
+        .lang-switch {
+            background: transparent;
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            transition: 0.3s;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .lang-switch:hover {
+            background: var(--neon-blue);
+            color: black;
+            box-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        /* قسم الهيرو (الخلفية الكبيرة) */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::after {
             content: '';
             position: absolute;
-            width: 50px;
-            height: 3px;
-            background-color: #00bcd4;
             bottom: 0;
-            right: 0;
-            border-radius: 2px;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(transparent, var(--dark-bg));
         }
 
-        .about-card p {
-            font-size: 1.1em;
-            color: #c0c0d0;
+        .hero-content {
+            z-index: 10;
+            max-width: 800px;
+            padding: 20px;
         }
 
-        /* تذييل الصفحة */
+        .hero h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            color: var(--neon-blue);
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        .btn-main {
+            padding: 15px 40px;
+            background: transparent;
+            color: white;
+            border: 2px solid var(--neon-purple);
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            position: relative;
+            transition: 0.5s;
+            overflow: hidden;
+        }
+
+        .btn-main:hover {
+            background: var(--neon-purple);
+            box-shadow: 0 0 30px var(--neon-purple);
+        }
+
+        /* قسم البطاقات */
+        .about {
+            padding: 100px 50px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            background: var(--dark-bg);
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.4s;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 10px 40px rgba(0, 243, 255, 0.1);
+        }
+
+        .card h3 {
+            color: var(--neon-blue);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
         footer {
-            background-color: #1a1a2e;
-            color: #888;
             text-align: center;
-            padding: 30px 20px;
-            font-size: 0.9em;
-            border-top: 1px solid #333;
+            padding: 50px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 12px;
+            color: #555;
         }
 
-        /* استجابة للتصميم (Responsive Design) */
+        /* تحسينات الموبايل */
         @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5em;
-            }
-
-            .hero-content p {
-                font-size: 1em;
-            }
-
-            .cta-button {
-                padding: 12px 25px;
-                font-size: 1em;
-            }
-
-            .about-section {
-                padding: 50px 20px;
-            }
-
-            .about-section h2 {
-                font-size: 2em;
-            }
-
-            .about-card {
-                min-width: unset;
-                max-width: 100%;
-            }
+            .hero h1 { font-size: 2.5rem; }
+            header { padding: 15px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <section class="hero-section">
+    <header>
+        <div class="logo">
+            <img src="https://vrworld1.github.io/vrworld/VRLOGO.png" alt="VR World Logo">
+        </div>
+        <button class="lang-switch" onclick="toggleLanguage()">العربية</button>
+    </header>
+
+    <section class="hero" id="home">
         <div class="hero-content">
-            <h1>مرحباً بك في VR World</h1>
-            <p>اكتشف آفاقاً جديدة وتجارب لا تُنسى في عالم الواقع الافتراضي الغامر. نحن هنا لنقلك إلى عوالم لم تتخيلها من قبل.</p>
-            <a href="#about" class="cta-button">اكتشف مشروعنا</a>
+            <h1 id="hero-title">Welcome to VR World</h1>
+            <p id="hero-desc">Discover new horizons and unforgettable experiences in the immersive world of virtual reality. We are here to transport you to worlds you never imagined.</p>
+            <a href="#about" class="btn-main" id="hero-btn">Explore Project</a>
         </div>
     </section>
 
-    <section id="about" class="about-section">
-        <h2>حول مشروع VR World</h2>
-        <div class="about-content">
-            <div class="about-card">
-                <h3>رؤيتنا</h3>
-                <p>نسعى في VR World لتقديم تجربة واقع افتراضي لا مثيل لها، تجمع بين التكنولوجيا المتطورة والمحتوى الإبداعي لفتح أبواب عوالم جديدة كلياً للمستخدمين.</p>
-            </div>
-            <div class="about-card">
-                <h3>ماذا نقدم؟</h3>
-                <p>من الألعاب المثيرة والتدريبات التفاعلية إلى الجولات الافتراضية الثقافية والتجارب التعليمية الغامرة، نقدم مجموعة واسعة من تطبيقات الواقع الافتراضي لتناسب جميع الاهتمامات.</p>
-            </div>
-            <div class="about-card">
-                <h3>لماذا VR World؟</h3>
-                <p>نحن نؤمن بقوة الواقع الافتراضي في تغيير طريقة تفاعلنا مع العالم. مع VR World، ستحصل على تجربة غامرة، آمنة، ومبتكرة تمكنك من الاستكشاف والتعلم والاستمتاع بطرق جديدة.</p>
-            </div>
+    <section class="about" id="about">
+        <div class="card">
+            <h3 id="card1-title">Our Vision</h3>
+            <p id="card1-desc">We strive to provide a unique VR experience, combining cutting-edge technology and creative content to open up entirely new worlds.</p>
+        </div>
+        <div class="card">
+            <h3 id="card2-title">What We Offer?</h3>
+            <p id="card2-desc">From exciting games and interactive training to cultural virtual tours and immersive educational experiences.</p>
+        </div>
+        <div class="card">
+            <h3 id="card3-title">Why VR World?</h3>
+            <p id="card3-desc">We believe in the power of VR to change how we interact with the world. Safe, innovative, and deeply immersive.</p>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 VR World. جميع الحقوق محفوظة.</p>
+        <p>&copy; 2024 VR World. All Rights Reserved.</p>
     </footer>
 
+    <script>
+        function toggleLanguage() {
+            const html = document.documentElement;
+            const btn = document.querySelector('.lang-switch');
+            
+            if (html.getAttribute('lang') === 'en') {
+                // تحويل للعربية
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                btn.innerText = 'English';
+                
+                // تحديث النصوص
+                document.getElementById('hero-title').innerText = 'مرحباً بك في عالم VR';
+                document.getElementById('hero-desc').innerText = 'اكتشف آفاقاً جديدة وتجارب لا تُنسى في عالم الواقع الافتراضي الغامر. نحن هنا لنقلك إلى عوالم لم تتخيلها من قبل.';
+                document.getElementById('hero-btn').innerText = 'اكتشف المشروع';
+                
+                document.getElementById('card1-title').innerText = 'رؤيتنا';
+                document.getElementById('card1-desc').innerText = 'نسعى لتقديم تجربة واقع افتراضي لا مثيل لها، تجمع بين التكنولوجيا المتطورة والمحتوى الإبداعي.';
+                
+                document.getElementById('card2-title').innerText = 'ماذا نقدم؟';
+                document.getElementById('card2-desc').innerText = 'من الألعاب المثيرة والتدريبات التفاعلية إلى الجولات الافتراضية الثقافية والتعليمية.';
+                
+                document.getElementById('card3-title').innerText = 'لماذا VR World؟';
+                document.getElementById('card3-desc').innerText = 'نؤمن بقوة الواقع الافتراضي في تغيير طريقة تفاعلنا مع العالم بشكل آمن ومبتكر.';
+                
+            } else {
+                // عودة للإنجليزية
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                btn.innerText = 'العربية';
+                
+                // إعادة النصوص الأصلية
+                document.getElementById('hero-title').innerText = 'Welcome to VR World';
+                document.getElementById('hero-desc').innerText = 'Discover new horizons and unforgettable experiences in the immersive world of virtual reality.';
+                document.getElementById('hero-btn').innerText = 'Explore Project';
+                
+                document.getElementById('card1-title').innerText = 'Our Vision';
+                document.getElementById('card2-title').innerText = 'What We Offer?';
+                document.getElementById('card3-title').innerText = 'Why VR World?';
+            }
+        }
+    </script>
 </body>
 </html>
